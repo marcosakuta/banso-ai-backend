@@ -3,11 +3,9 @@ services:
     name: banso-ai-backend
     runtime: python
     buildCommand: pip install -r requirements.txt
-    startCommand: python src/main.py
+    startCommand: gunicorn --bind 0.0.0.0:$PORT src.main:app
     envVars:
       - key: OPENAI_API_KEY
         sync: false
-      - key: PORT
-        value: 10000
       - key: PYTHON_VERSION
         value: 3.11.0
